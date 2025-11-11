@@ -10,6 +10,8 @@ import classRoutes from "./routes/classRoutes.js";
 import attendanceRoutes from "./routes/attendanceRoutes.js";
 import assignmentRoutes from "./routes/assignmentRoutes.js";
 import gradeRoutes from "./routes/gradeRoutes.js";
+import lookupRoutes from "./routes/lookupRoutes.js";
+
 
 
 const app = express();
@@ -24,6 +26,8 @@ app.use("/api/classes", classRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/assignments", assignmentRoutes);
 app.use("/api/grades", gradeRoutes);
+app.use("/api/lookup", lookupRoutes);
+
 
 
 // Health
