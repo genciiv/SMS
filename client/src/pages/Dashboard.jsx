@@ -9,7 +9,7 @@ export default function Dashboard() {
   async function load() {
     setErr("");
     try {
-      const { data } = await api.get("/api/notifications");
+      const { data } = await api.get("/notifications"); // ✅ korrigjuar
       setNotes(data);
     } catch (e) {
       setErr(e?.response?.data?.message || "Gabim gjatë marrjes së njoftimeve.");
@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   async function markRead(id) {
     try {
-      await api.post(`/api/notifications/${id}/read`);
+      await api.post(`/notifications/${id}/read`); // ✅ korrigjuar
       setNotes((prev) => prev.map(n => n._id === id ? { ...n, isRead: true } : n));
     } catch {}
   }

@@ -18,6 +18,7 @@ import reportRoutes from "./routes/reportRoutes.js";
 
 
 
+
 const app = express();
 
 // Middlewares
@@ -35,6 +36,7 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
 app.use("/api/reports", reportRoutes);
+
 
 
 

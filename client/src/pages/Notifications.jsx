@@ -24,7 +24,7 @@ export default function Notifications() {
   async function load() {
     setErr("");
     try {
-      const { data } = await api.get("/api/notifications");
+      const { data } = await api.get("/notifications"); // ✅ korrigjuar
       setList(data);
     } catch (e) {
       setErr(e?.response?.data?.message || "Gabim gjatë marrjes së njoftimeve.");
@@ -36,7 +36,7 @@ export default function Notifications() {
   async function create() {
     setErr(""); setOk("");
     try {
-      await api.post("/api/notifications", { title, body, audience });
+      await api.post("/notifications", { title, body, audience }); // ✅ korrigjuar
       setOk("Njoftimi u publikua.");
       setTitle(""); setBody("");
       load();
@@ -47,7 +47,7 @@ export default function Notifications() {
 
   async function markRead(id) {
     try {
-      await api.post(`/api/notifications/${id}/read`);
+      await api.post(`/notifications/${id}/read`); // ✅ korrigjuar
       setList(prev => prev.map(n => n._id === id ? { ...n, isRead: true } : n));
     } catch {}
   }
@@ -55,7 +55,7 @@ export default function Notifications() {
   async function remove(id) {
     setErr(""); setOk("");
     try {
-      await api.delete(`/api/notifications/${id}`);
+      await api.delete(`/notifications/${id}`); // ✅ korrigjuar
       setOk("Njoftimi u fshi.");
       setList(prev => prev.filter(n => n._id !== id));
     } catch (e) {
