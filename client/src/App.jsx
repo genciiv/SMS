@@ -1,23 +1,30 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Publike
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+
+// Të mbrojtura + layout
 import Dashboard from "./pages/Dashboard";
 import Attendance from "./pages/Attendance";
 import Assignments from "./pages/Assignments";
 import Grades from "./pages/Grades";
+import Notifications from "./pages/Notifications";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
+
 import "./index.css";
 
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Publike */}
+        {/* Rrugë publike */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Të mbrojtura */}
+        {/* Rrugë të mbrojtura me layout */}
         <Route
           path="/"
           element={
@@ -58,7 +65,30 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Notifications />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* (Opsionale) 404 e thjeshtë */}
+        <Route
+          path="*"
+          element={
+            <div style={{ padding: 24 }}>
+              <h1>404</h1>
+              <p>Faqja nuk u gjet. <a href="/">Kthehu te kryefaqja</a></p>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
+
+export default App;
