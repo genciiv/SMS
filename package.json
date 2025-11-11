@@ -1,21 +1,18 @@
 {
-  "name": "g-coode",
+  "name": "gcoode-sms",
   "version": "1.0.0",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "private": true,
+  "description": "Sistem menaxhimi shkollor G-coode (MERN Stack, CSS vanilla)",
   "scripts": {
     "dev": "concurrently -k -n \"SERVER,CLIENT\" -c \"yellow,cyan\" \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
     "install:all": "npm --prefix client install && npm --prefix server install"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
     "concurrently": "^9.0.0"
-  }
+  },
+  "keywords": [],
+  "author": "G-coode Team",
+  "license": "MIT"
 }

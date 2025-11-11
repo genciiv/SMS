@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
@@ -20,7 +21,10 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok", name: "G-coode SMS API" });
 });
 
-// DB
+// Routes
+app.use("/api/auth", authRoutes);
+
+// DB & start
 const MONGODB_URI = process.env.MONGODB_URI;
 if (!MONGODB_URI) {
   console.error("❌ MONGODB_URI mungon në .env");
@@ -32,9 +36,7 @@ mongoose
   .then(() => {
     console.log("✅ MongoDB connected");
     const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () =>
-      console.log(`🚀 API running on http://localhost:${PORT}`)
-    );
+    app.listen(PORT, () => console.log(`🚀 API running on http://localhost:${PORT}`));
   })
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err.message);
