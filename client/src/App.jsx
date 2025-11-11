@@ -10,13 +10,15 @@ import Attendance from "./pages/Attendance";
 import Assignments from "./pages/Assignments";
 import Grades from "./pages/Grades";
 import Notifications from "./pages/Notifications";
+import Calendar from "./pages/Calendar";
+import Schedule from "./pages/Schedule";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 
 import "./index.css";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -75,8 +77,28 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/calendar"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Calendar />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/schedule"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Schedule />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
 
-        {/* (Opsionale) 404 e thjeshtë */}
+        {/* 404 e thjeshtë */}
         <Route
           path="*"
           element={
@@ -90,5 +112,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

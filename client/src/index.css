@@ -79,3 +79,8 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-
   .shell { grid-template-columns: 1fr; }
   .sidebar { position: sticky; top: 0; z-index: 10; border-right: none; border-bottom: 1px solid #e5e7eb; }
 }
+
+
+.menu__link { text-decoration: none; color: var(--text); padding: 8px 10px; border-radius: 8px; display: block; }
+.menu__link:hover { background: #eef2ff; }
+.menu__link--active { background: #e0e7ff; font-weight: 700; }

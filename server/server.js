@@ -12,7 +12,8 @@ import assignmentRoutes from "./routes/assignmentRoutes.js";
 import gradeRoutes from "./routes/gradeRoutes.js";
 import lookupRoutes from "./routes/lookupRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
-
+import eventRoutes from "./routes/eventRoutes.js";
+import scheduleRoutes from "./routes/scheduleRoutes.js";
 
 
 const app = express();
@@ -29,6 +30,8 @@ app.use("/api/assignments", assignmentRoutes);
 app.use("/api/grades", gradeRoutes);
 app.use("/api/lookup", lookupRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/schedules", scheduleRoutes);
 
 
 
