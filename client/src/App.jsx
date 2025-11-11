@@ -12,6 +12,7 @@ import Grades from "./pages/Grades";
 import Notifications from "./pages/Notifications";
 import Calendar from "./pages/Calendar";
 import Schedule from "./pages/Schedule";
+import Reports from "./pages/Reports";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
@@ -37,6 +38,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/attendance"
           element={
@@ -47,6 +49,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/assignments"
           element={
@@ -57,6 +60,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/grades"
           element={
@@ -67,6 +71,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/notifications"
           element={
@@ -77,6 +82,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/calendar"
           element={
@@ -87,12 +93,24 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/schedule"
           element={
             <ProtectedRoute>
               <Layout>
                 <Schedule />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Reports />
               </Layout>
             </ProtectedRoute>
           }

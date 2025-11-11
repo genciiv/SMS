@@ -38,6 +38,8 @@ export default function Layout({ children }) {
           <NavLink to="/calendar">🗓️ Kalendar</NavLink>
           <NavLink to="/schedule">⌚ Orari</NavLink>
           <NavLink to="/notifications">🔔 Njoftime</NavLink>
+          <NavLink to="/reports">📊 Raporte</NavLink>
+
         </nav>
 
         <div className="userbox">

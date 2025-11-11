@@ -14,6 +14,8 @@ import lookupRoutes from "./routes/lookupRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import scheduleRoutes from "./routes/scheduleRoutes.js";
+import reportRoutes from "./routes/reportRoutes.js";
+
 
 
 const app = express();
@@ -32,6 +34,7 @@ app.use("/api/lookup", lookupRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
+app.use("/api/reports", reportRoutes);
 
 
 
