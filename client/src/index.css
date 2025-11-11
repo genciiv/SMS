@@ -37,3 +37,45 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-
 }
 .btn--primary { background: var(--primary); color: #fff; }
 .btn--primary:hover { background: var(--primary-600); }
+
+
+/* Layout bazë */
+.shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.sidebar {
+  background: #ffffff; border-right: 1px solid #e5e7eb; padding: 18px; display: flex; flex-direction: column; gap: 18px;
+}
+.brand { font-weight: 800; font-size: 20px; color: var(--primary); }
+.menu { display: grid; gap: 8px; }
+.menu a { text-decoration: none; color: var(--text); padding: 8px 10px; border-radius: 8px; }
+.menu a:hover { background: #eef2ff; }
+.userbox { margin-top: auto; background: #f1f5f9; padding: 10px; border-radius: 10px; }
+.userbox__name { font-weight: 700; }
+.userbox__role { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+.content { padding: 22px; }
+
+.page h1 { margin-top: 0; margin-bottom: 12px; }
+.card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.items-row { align-items: center; }
+
+.table { margin-top: 12px; }
+.thead, .trow { padding: 10px; border-bottom: 1px solid #e5e7eb; }
+.thead { font-weight: 700; background: #f8fafc; border-radius: 8px; }
+.trow:hover { background: #fafafa; border-radius: 8px; }
+
+.link { color: var(--primary); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+.form__ok { background: #16a34a; color: #fff; padding: 10px; border-radius: 10px; }
+.btn--ghost { background: transparent; border: 1px solid #cbd5e1; }
+.btn--ghost:hover { background: #f8fafc; }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { position: sticky; top: 0; z-index: 10; border-right: none; border-bottom: 1px solid #e5e7eb; }
+}
