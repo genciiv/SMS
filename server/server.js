@@ -7,6 +7,9 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import classRoutes from "./routes/classRoutes.js";
+import attendanceRoutes from "./routes/attendanceRoutes.js";
+import assignmentRoutes from "./routes/assignmentRoutes.js";
+import gradeRoutes from "./routes/gradeRoutes.js";
 
 
 const app = express();
@@ -18,6 +21,9 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/classes", classRoutes);
+app.use("/api/attendance", attendanceRoutes);
+app.use("/api/assignments", assignmentRoutes);
+app.use("/api/grades", gradeRoutes);
 
 
 // Health
