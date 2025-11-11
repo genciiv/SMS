@@ -13,6 +13,7 @@ import Notifications from "./pages/Notifications";
 import Calendar from "./pages/Calendar";
 import Schedule from "./pages/Schedule";
 import Reports from "./pages/Reports";
+import Chat from "./pages/Chat";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
@@ -27,7 +28,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Rrugë të mbrojtura me layout */}
+        {/* Rrugë të mbrojtura me Layout */}
         <Route
           path="/"
           element={
@@ -38,7 +39,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/attendance"
           element={
@@ -49,7 +49,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/assignments"
           element={
@@ -60,7 +59,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/grades"
           element={
@@ -71,7 +69,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/notifications"
           element={
@@ -82,7 +79,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/calendar"
           element={
@@ -93,7 +89,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/schedule"
           element={
@@ -104,13 +99,22 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/reports"
           element={
             <ProtectedRoute>
               <Layout>
                 <Reports />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Chat />
               </Layout>
             </ProtectedRoute>
           }

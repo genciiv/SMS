@@ -1,69 +1,61 @@
-import "dotenv/config";
+import "dotenv/config.js";
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
+import mongoose from "mongoose";
 import morgan from "morgan";
-import helmet from "helmet";
-import cookieParser from "cookie-parser";
+import http from "http";
+import { Server as SocketIO } from "socket.io";
+
 import authRoutes from "./routes/authRoutes.js";
-import classRoutes from "./routes/classRoutes.js";
-import attendanceRoutes from "./routes/attendanceRoutes.js";
-import assignmentRoutes from "./routes/assignmentRoutes.js";
-import gradeRoutes from "./routes/gradeRoutes.js";
-import lookupRoutes from "./routes/lookupRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
-import eventRoutes from "./routes/eventRoutes.js";
-import scheduleRoutes from "./routes/scheduleRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
-
-
-
+import chatRoutes from "./routes/chatRoutes.js";
 
 const app = express();
-
-// Middlewares
-app.use(helmet());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(cookieParser());
-app.use("/api/classes", classRoutes);
-app.use("/api/attendance", attendanceRoutes);
-app.use("/api/assignments", assignmentRoutes);
-app.use("/api/grades", gradeRoutes);
-app.use("/api/lookup", lookupRoutes);
-app.use("/api/notifications", notificationRoutes);
-app.use("/api/events", eventRoutes);
-app.use("/api/schedules", scheduleRoutes);
-app.use("/api/reports", reportRoutes);
-
-
-
-
-
-// Health
-app.get("/health", (_req, res) => {
-  res.json({ status: "ok", name: "G-coode SMS API" });
+const server = http.createServer(app);
+const io = new SocketIO(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    credentials: true,
+  },
 });
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(morgan("dev"));
+
+// MongoDB
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error", err));
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/reports", reportRoutes);
+app.use("/api/chat", chatRoutes);
 
-// DB & start
-const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) {
-  console.error("❌ MONGODB_URI mungon në .env");
-  process.exit(1);
-}
+// Socket.io events
+io.on("connection", (socket) => {
+  console.log("🟢 User connected:", socket.id);
 
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => {
-    console.log("✅ MongoDB connected");
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`🚀 API running on http://localhost:${PORT}`));
-  })
-  .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
-    process.exit(1);
+  socket.on("join", (userId) => {
+    socket.join(userId);
   });
+
+  socket.on("message", (data) => {
+    const { senderId, receiverId, text } = data;
+    io.to(receiverId).emit("message", { senderId, text });
+  });
+
+  socket.on("disconnect", () => {
+    console.log("🔴 User disconnected:", socket.id);
+  });
+});
+
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () =>
+  console.log(`🚀 API running on http://localhost:${PORT}`)
+);
